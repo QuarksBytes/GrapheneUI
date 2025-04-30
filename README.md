@@ -18,9 +18,9 @@ python Graphene/Bin/graphene.py run
 
 
 - Platforms supported :
-.. Linux    (fully supported)
-.. Windows  (not yet, but will be soon)
-.. Android  (not yet, but will be soon)
-.. IOS      (not yet, but will be soon)
-.. Mac      (not yet, but will be soon)
-.. Web      (not yet, but will be soon)
+- Linux    (fully supported)
+- Windows  (not yet, but will be soon)
+- Android  (not yet, but will be soon)
+- IOS      (not yet, but will be soon)
+- Mac      (not yet, but will be soon)
+- Web      (not yet, but will be soon)
