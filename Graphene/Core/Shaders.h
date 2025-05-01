@@ -160,13 +160,20 @@ const GLchar* textFragmentShader=R"(
     return vec3(float((hex>>16u)&0xff),float((hex>>8u)&0xff), float(hex&0xff))*0.00392156862745098f;
   }
 
+  float linearStep(float edge0, float edge1, float x) {
+    return clamp((x - edge0) / (edge1 - edge0), 0.0, 1.0);
+  }
   void main(){
     int chr=clamp(text,0x20,0x7f);
+// float alpha = smoothstep(0.5 - smoothing, 0.5 + smoothing, sdf);
 
     float alpha=texture(bitmap,(vec2(float(((chr>>4)&0xf)-0x2),float(0xf-(chr&0xff)))+coord)*vec2(0.16666666666666666,0.0625)).a;
-    vec4 tColor=vec4(hexToVec3(fontColor),smoothstep(0.1,0.55 ,alpha));
+    // float smoothing=;
+    // smoothing=smoothing-fract(smoothing);
+    vec4 tColor=vec4(hexToVec3(fontColor),clamp(smoothstep(0.5 - alpha, 0.5 + alpha, alpha)*2.0,0.0,1.0));
 
-    FragColor=vec4(tColor.rgba);//*tColor.a,tColor.a);
+    FragColor=vec4(tColor.rgb*tColor.a,tColor.a);
+    // FragColor.rgb*=FragColor.a;
 
   }
 )";
